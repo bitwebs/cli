@@ -1,46 +1,46 @@
 {
-  "name": "@hyperspace/cli",
+  "name": "bitweb-cli",
   "type": "module",
-  "version": "2.0.0",
-  "description": "A CLI for the hyper:// space network.",
+  "version": "1.0.0",
+  "description": "A CLI for the bit:// web.",
   "bin": {
-    "hyp": "./bin/hyp.js"
+    "bit": "./bin/bit.js"
   },
   "scripts": {
-    "start": "node ./bin/hyp",
+    "start": "node ./bin/bit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hypercore-protocol/hypercore-cli.git"
+    "url": "git+https://github.com/bitwebs/cli.git"
   },
   "keywords": [
-    "beaker",
+    "bitweb",
     "cli"
   ],
-  "author": "Blue Link Labs",
+  "author": "BitWeb Project",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hypercore-protocol/hypercore-cli/issues"
+    "url": "https://github.com/bitwebs/cli/issues"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "homepage": "https://github.com/hypercore-protocol/hypercore-cli#readme",
+  "homepage": "https://github.com/bitwebs/cli#readme",
   "dependencies": {
+    "@web4/bitbeam": "^1.0.0",
+    "@web4/bitdrive": "^1.0.0",
+    "@web4/bitspace": "^1.0.0",
+    "@web4/bittree": "^1.0.0",
     "ansi-diff-stream": "^1.2.1",
     "await-lock": "^2.1.0",
     "binary-extensions": "^2.1.0",
+    "bitspace-mirroring-service": "^1.0.0",
     "bytes": "^3.1.0",
     "chalk": "^1.1.3",
     "chokidar": "^3.4.3",
     "concat-stream": "^2.0.0",
     "diff-file-tree": "^2.5.1",
-    "hyperbeam": "^1.1.1",
-    "hyperbee": "^1.0.1",
-    "hyperdrive": "^10.18.0",
-    "hyperspace": "^3.17.0",
-    "hyperspace-mirroring-service": "^1.0.0",
     "identify-filetype": "^1.0.0",
     "mime": "^1.4.0",
     "mkdirp": "^1.0.4",

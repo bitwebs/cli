@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 
-process.title = "hyp"
+process.title = "bit"
 
 import subcommand from 'subcommand'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import * as hyper from '../lib/hyper/index.js'
+import * as bit from '../lib/bit/index.js'
 
 import info from '../lib/commands/info.js'
 import create from '../lib/commands/create.js'
@@ -26,10 +26,10 @@ import driveDiff from '../lib/commands/drive/diff.js'
 import driveSync from '../lib/commands/drive/sync.js'
 import driveHttp from '../lib/commands/drive/http.js'
 
-import beeLs from '../lib/commands/bee/ls.js'
-import beeGet from '../lib/commands/bee/get.js'
-import beePut from '../lib/commands/bee/put.js'
-import beeDel from '../lib/commands/bee/del.js'
+import treeLs from '../lib/commands/tree/ls.js'
+import treeGet from '../lib/commands/tree/get.js'
+import treePut from '../lib/commands/tree/put.js'
+import treeDel from '../lib/commands/tree/del.js'
 
 import daemonStatus from '../lib/commands/daemon/status.js'
 import daemonStart from '../lib/commands/daemon/start.js'
@@ -57,10 +57,10 @@ const commands = {
   driveSync,
   driveHttp,
 
-  beeLs,
-  beeGet,
-  beePut,
-  beeDel,
+  treeLs,
+  treeGet,
+  treePut,
+  treeDel,
 
   daemonStatus,
   daemonStart,
@@ -103,12 +103,12 @@ function wrapCommand (obj) {
 
     try {
       if (!obj.name.startsWith('daemon') && obj.name !== 'beam') {
-        await hyper.setup()
+        await bit.setup()
       }
     } catch (err) {
       console.error('The daemon is not active. Please run:')
       console.error('')
-      console.error('  hyp daemon start')
+      console.error('  bit daemon start')
       console.error('')
       process.exit(2)
     }

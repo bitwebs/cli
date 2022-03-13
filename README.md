@@ -1,37 +1,25 @@
-![./logo.png](./logo.png)
+# BitWeb CLI
 
-# Hyp
-
-<p>[
-  <a href="https://www.youtube.com/watch?v=SVk1uIQxOO8" target="_blank">Demo Video</a> |
-  <a href="#installation">Installation</a> |
-  <a href="#usage">Usage</a> |
-  <a href="#overview">Overview</a> |
-  <a href="https://hypercore-protocol.org/guides/hyp/">Website</a>
-]</p>
-
-A CLI for peer-to-peer file sharing (and more) using the [Hypercore Protocol](https://hypercore-protocol.org).
-
-<a href="https://www.youtube.com/watch?v=SVk1uIQxOO8" target="_blank">📺 Watch The Demo Video</a>
+A CLI for peer-to-peer file sharing (and more) using the [BIT protocol](https://bitwebs.org).
 
 ## Installation
 
 Requires nodejs 14+
 
 ```
-npm install -g @hyperspace/cli
+npm install -g bitweb-cli
 ```
 
 To start using the network, run:
 
 ```
-hyp daemon start
+bit daemon start
 ```
 
 This will run in the background, sync data for you, until you run:
 
 ```
-hyp daemon stop
+bit daemon stop
 ```
 
 ## Usage
@@ -39,100 +27,100 @@ hyp daemon stop
 Command overview:
 
 ```bash
-Usage: hyp <command> [opts...]
+Usage: bit <command> [opts...]
 
 General Commands:
 
-  hyp info [urls...] - Show information about one (or more) hypers.
-  hyp seed {urls...} - Download and make hyper data available to the network.
-  hyp unseed {urls...} - Stop making hyper data available to the network.
-  hyp create {drive|bee} - Create a new hyperdrive or hyperbee.
+  bit info [urls...] - Show information about one (or more) bitweb data.
+  bit seed {urls...} - Download and make data available to the network.
+  bit unseed {urls...} - Stop making data available to the network.
+  bit create {drive|tree} - Create a new bitdrive or bittree.
 
-  hyp beam {pass_phrase} - Send a stream of data over the network.
+  bit beam {pass_phrase} - Send a stream of data over the network.
 
-Hyperdrive Commands:
+Bitdrive Commands:
 
-  hyp drive ls {url} - List the entries of the given hyperdrive URL.
-  hyp drive mkdir {url} - Create a new directory at the given hyperdrive URL.
-  hyp drive rmdir {url} - Remove a directory at the given hyperdrive URL.
+  bit drive ls {url} - List the entries of the given bitdrive URL.
+  bit drive mkdir {url} - Create a new directory at the given bitdrive URL.
+  bit drive rmdir {url} - Remove a directory at the given bitdrive URL.
 
-  hyp drive cat {url} - Output the content of the given hyperdrive URL.
-  hyp drive put {url} [content] - Write a file at the given hyperdrive URL.
-  hyp drive rm {url} - Remove a file or (if --recursive) a folder at the given hyperdrive URL.
+  bit drive cat {url} - Output the content of the given bitdrive URL.
+  bit drive put {url} [content] - Write a file at the given bitdrive URL.
+  bit drive rm {url} - Remove a file or (if --recursive) a folder at the given bitdrive URL.
 
-  hyp drive diff {source_path_or_url} {target_path_or_url} - Compare two folders in your local filesystem or in hyperdrives. Can optionally "commit" the difference.
-  hyp drive sync {source_path_or_url} [target_path_or_url] - Continuously sync changes between two folders in your local filesystem or in hyperdrives.
+  bit drive diff {source_path_or_url} {target_path_or_url} - Compare two folders in your local filesystem or in bitdrives. Can optionally "commit" the difference.
+  bit drive sync {source_path_or_url} [target_path_or_url] - Continuously sync changes between two folders in your local filesystem or in bitdrives.
 
-  hyp drive http {url} - Host a hyperdrive as using HTTP on the localhost.
+  bit drive http {url} - Host a bitdrive as using HTTP on the localhost.
 
-Hyperbee Commands:
+BitTree Commands:
 
-  hyp bee ls {url} - List the entries of the given hyperbee URL.
-  hyp bee get {url} - Get the value of an entry of the given hyperbee URL.
-  hyp bee put {url} [value] - Set the value of an entry of the given hyperbee URL.
-  hyp bee del {url} - Delete an entry of the given hyperbee URL.
+  bit tree ls {url} - List the entries of the given bittree URL.
+  bit tree get {url} - Get the value of an entry of the given bittree URL.
+  bit tree put {url} [value] - Set the value of an entry of the given bittree URL.
+  bit tree del {url} - Delete an entry of the given bittree URL.
 
 Daemon Commands:
 
-  hyp daemon status - Check the status of the hyperspace daemon.
-  hyp daemon start - Start the hyperspace daemon.
-  hyp daemon stop - Stop the hyperspace and mirroring daemons if active.
+  bit daemon status - Check the status of the bitweb daemon.
+  bit daemon start - Start the bitweb daemon.
+  bit daemon stop - Stop the bitweb daemon and mirroring daemons if active.
 
 Aliases:
 
-  hyp sync -> hyp drive sync
-  hyp diff -> hyp drive diff
-  hyp ls -> hyp drive ls
-  hyp cat -> hyp drive cat
-  hyp put -> hyp drive put
+  bit sync -> bit drive sync
+  bit diff -> bit drive diff
+  bit ls -> bit drive ls
+  bit cat -> bit drive cat
+  bit put -> bit drive put
 ```
 
 ## Overview
 
-The [Hypercore Protocol](https://hypercore-protocol.org) is a peer-to-peer network for sharing files and data. This command-line provides a convenient set of tools for accessing the network.
+The [BitWeb](https:/bitwebs.org) is a peer-to-peer network for sharing files and data. This command-line provides a convenient set of tools for accessing the network.
 
-There are two common kinds of "Hypercores":
+BitWeb data exists within a data structure known as a [UniChain](https://github.com/bitwebs/unichain). There are two common kinds of "UniChains":
 
-- **Hyperdrive** A folder containing files.
-- **Hyperbee** A key-value database (similar to leveldb).
+- **BitDrive** A folder containing files.
+- **BitTree** A key-value database (similar to leveldb).
 
-All data has a URL which starts with `hyper://`. A URL will look like this:
-
-```
-hyper://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/
-```
-
-You use these URLs to access the hyper data over the peer-to-peer network. For example:
+All data has a URL which starts with `bit://`. A URL will look like this:
 
 ```
-hyp ls hyper://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/
-hyp cat hyper://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/file.txt
-cat diagram.png | hyp put 515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/diagram.png
+bit://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/
 ```
 
-You can create a new hyperdrive or hyperbee using the `create` commands:
+You use these URLs to access the BitWeb data over the peer-to-peer network. For example:
 
 ```
-hyp create drive
+bit ls bit://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/
+bit cat bit://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/file.txt
+cat diagram.png | bit put 515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/diagram.png
 ```
 
-You can then seed the hyper (or seed a hyper created by somebody else) using the `seed` command:
+You can create a new bitdrive or bittree using the `create` commands:
 
 ```
-hyp seed hyper://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/
+bit create drive
 ```
 
-To see what hypers you are currently seeding, run `info`:
+You can then seed the BitWeb data (or seed a data created by somebody else) using the `seed` command:
 
 ```
-hyp info
+bit seed bit://515bbbc1db2139ef27b6c45dfa418c8be6a1dec16823ea7cb9e61af8d060049e/
+```
+
+To see what bitweb data you are currently seeding, run `info`:
+
+```
+bit info
 ```
 
 ## Documentation
 
-The [website documentation](https://hypercore-protocol.org/guides/hyp/) have a lot of useful guides:
+The [website documentation](https://bitwebs.org/guides/cli/) have a lot of useful guides:
 
-- [Full Commands Reference](https://hypercore-protocol.org/guides/hyp/commands/)
-- [Guide: Sharing Folders](https://hypercore-protocol.org/guides/hyp/sharing-folders/)
-- [Guide: Seeding Data](https://hypercore-protocol.org/guides/hyp/seeding-data/)
-- [Guide: Beaming Files](https://hypercore-protocol.org/guides/hyp/beaming-files/)
+- [Full Commands Reference](https://bitwebs.org/guides/cli/commands/)
+- [Guide: Sharing Folders](https://bitwebs.org/guides/cli/sharing-folders/)
+- [Guide: Seeding Data](https://bitwebs.org/guides/cli/seeding-data/)
+- [Guide: Beaming Files](https://bitwebs.org/guides/cli/beaming-files/)
